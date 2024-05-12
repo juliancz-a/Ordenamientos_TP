@@ -1,2 +1,4 @@
-# Ordenamientos_TP
-Trabajo Práctico sobre ordenamientos de arrays.
+# Algoritmos de Ordenamiento: Trabajo Práctico
+
+## Integrantes :raising_hand:
+- Julián Caceres
