@@ -58,15 +58,21 @@
     -   Se realizará el swap, a través de la función "swap":
         -   Del elemento en posición "i", con el elemento en posición "j" (el elemento recorrido que puede variar desde el primer elemento del vector hasta el anteúltimo).
 
+    ##### :hash: Función "swap":
+    ~~~ Python
+    def swap(a,b):
+    return b,a
+    ~~~
+
 - Pongamos en un ejemplo esto:
     - Tenemos la siguiente lista : [5,2,1,7,9,3]. El vector será [3].
-    - i, sin entrar en la condicion del for, vale: "-1" (puesto a que el primer elemento se encuentra en posición "0").
+    - i, sin entrar en la condicion del for, vale: "-1" (puesto a que el primer elemento se encuentra en posición "0", y a este se le resta -1).
     - Los elementos recorridos serán: [5,2,1,7,9].
     - [5] es más grande que el vector, no ingresa. Sin embargo, [2], el siguiente elemento, es más pequeño o igual que el vector. Se procede a hacer el swap.
     - Se intercambia el primer elemento [5] (porque i+1 = 0) con [2]. Quedará esto: [2,5,1,7,9,3].
     - Se encuentra otro número menor o igual que el vector: [1]. La variable "i" se le suma 1 y se realiza el swap de [5] con [1], porque ahora [5] se vuelve a encontrar en la posición "i" (1). Quedará: [2,1,5,7,9,3]. 
     
-    - Ahora falta corregir la posición del pivot, que se encuentra en una posición incorrecta. La anteúltima línea intercambia la posición del elemento en posición "i" +  1, que es el elemento más grande que el pivot, siendo el [5], ya que "i" pasa a valer 2. Ahora el pivot queda en el "medio": [2,1,3,7,9,5].
+- Fuera del for, se corrige la posición del pivot, ya que solo ordenamos los elementos menores que este y los mayores a este. Necesitamos posicionar al pivot donde corresponde para que los subarrays luego tomen otro valor como pivot. La anteúltima línea intercambia la posición del elemento en posición "i" +  1, que es un elemento más grande o igual que el pivot. Siguiendo el ejemplo visto, se intercambia el [5], ya que "i" pasa a valer 2. Ahora el pivot queda en el "medio": [2,1,3,7,9,5]. Así, se da por terminada la primera partición.
 
 ~~~ Python
     def particionar(array, low, high):
@@ -83,7 +89,9 @@
     return i + 1
 ~~~
 
-- La función "particionar" devuelve la posición del pivot (i+1). A partir de esta posición se llama de manera recursiva a la funcíon quick_sort para los subarrays menores o iguales al pivot y para los que son mayores a este:
+- La función "particionar" devuelve la posición del pivot (i+1). A partir de esta posición se llama de manera recursiva a la funcíon quick_sort para los subarrays menores o iguales al pivot y para los que son mayores a este.
+
+####:hash:Función recursiva "quick_sort"
 
 ~~~ Python
     quick_sort(array, low, pi - 1)
