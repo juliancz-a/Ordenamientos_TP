@@ -49,6 +49,21 @@
 - Una vez se cumple esta condición, lo primero que hace esta función es llamar a otra: particionar, la cual recibe los mismos tres parámetros. Ésta es la encargada de realizar, como bien su nombre lo dice, las particiones al array a través de un pivot.
 
 ##### :hash:Función "particionar":
+~~~ Python
+    def particionar(array, low, high):
+    pivote = array[high] #
+    i = low - 1 
+        
+    for j in range(low, high):
+        if array[j] <= pivote: 
+            i += 1 
+            array[i], array[j] = swap(array[i], array[j])
+    
+    array[i + 1], array[high] = swap(array[i + 1], array[high] ) 
+    
+    return i + 1
+~~~
+
 - El primer paso será establecer el último elemento del array como el pivote.
 - Luego se creará una nueva variable "i", que será utilizada para realizar el swap. Esta misma toma el valor del primer elemento menos una unidad. 
     - Se denominará swap al intercambio entre dos elementos de un vector.
@@ -74,24 +89,9 @@
     
 - Fuera del for, se corrige la posición del pivot, ya que solo ordenamos los elementos menores que este y los mayores a este. Necesitamos posicionar al pivot donde corresponde para que los subarrays luego tomen otro valor como pivot. La anteúltima línea intercambia la posición del elemento en posición "i" +  1, que es un elemento más grande o igual que el pivot. Siguiendo el ejemplo visto, se intercambia el [5], ya que "i" pasa a valer 2. Ahora el pivot queda en el "medio": [2,1,3,7,9,5]. Así, se da por terminada la primera partición.
 
-~~~ Python
-    def particionar(array, low, high):
-    pivote = array[high] #
-    i = low - 1 
-        
-    for j in range(low, high):
-        if array[j] <= pivote: 
-            i += 1 
-            array[i], array[j] = swap(array[i], array[j])
-    
-    array[i + 1], array[high] = swap(array[i + 1], array[high] ) 
-    
-    return i + 1
-~~~
-
 - La función "particionar" devuelve la posición del pivot (i+1). A partir de esta posición se llama de manera recursiva a la funcíon quick_sort para los subarrays menores o iguales al pivot y para los que son mayores a este.
 
-####:hash:Función recursiva "quick_sort"
+##### :hash:Función recursiva "quick_sort"
 
 ~~~ Python
     quick_sort(array, low, pi - 1)
