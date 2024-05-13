@@ -28,24 +28,27 @@
     ![QuickSortExample](https://blog.shahadmahmud.com/quicksort/qs3/)
 
 - Una vez dividido el array en "subarrays", se volverá a repetir este procedimiento: cada "pedacito" de la lista tomará como pivot el último de sus elementos y hará la comparación formando nuevos subarrays, hasta que el vector no tenga más elementos con los cuales compararse. 
+#### :snake: Link al código de QuickSort:
+- [Código](https://www.onlinegdb.com/AcAYk0fyi)
 
-#### :scroll: Explicación paso a paso del código
-
-- Luego de definir un vector con elementos sin órden alguno, se llamará a la función quick_sort, la cual recibe tres parametros. Estos son: 
+#### :scroll: Explicación paso a paso del código:
+- Luego de definir el vector con elementos sin órden alguno, lo primero a hacer es llamar a la función quick_sort, la cual recibe tres parametros. Estos son: 
     - "array", siendo la lista en sí.
     - "low", como el primer elemento de la lista.
     - "high", como el último elemento de la lista. 
-- Mientras haya un primer elemento diferente a un último elemento (que low sea menor que high) se ejecutará el sorteamiento.
-    ##### :hash:Función "quick_sort":
+
+##### :hash:Función "quick_sort":
 ~~~ Python 
     def quick_sort(array, low, high):
     if low < high:
         pi = particionar(array, low, high) 
         quick_sort(array, low, pi - 1)
         quick_sort(array, pi + 1, high)
-~~~
-- Lo primero que hace esta función es llamar a otra: particionar, la cual recibe los mismos tres parámetros. Ésta es la encargada de realizar, como bien su nombre lo dice, las particiones al array a través de un pivot.
-    ##### :hash:Función "particionar":
+~~~ 
+- Mientras haya un primer elemento diferente a un último elemento (que low sea menor que high) se ejecutará el sorteamiento.
+- Una vez se cumple esta condición, lo primero que hace esta función es llamar a otra: particionar, la cual recibe los mismos tres parámetros. Ésta es la encargada de realizar, como bien su nombre lo dice, las particiones al array a través de un pivot.
+
+##### :hash:Función "particionar":
 - El primer paso será establecer el último elemento del array como el pivote.
 - Luego se creará una nueva variable "i", que será utilizada para realizar el swap. Esta misma toma el valor del primer elemento menos una unidad. 
     - Se denominará swap al intercambio entre dos elementos de un vector.
