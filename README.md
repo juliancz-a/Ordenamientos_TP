@@ -23,7 +23,7 @@
 ### ¿Cómo funciona el algoritmo de ordenamiento Quick Sort?
 
 - Quick Sort es un método que suele ser más rápido que los demás a la hora de ordenar elementos de un vector. 
-- Implica tomar de un vector el ultimo de sus elementos para tomarlo con "pivot". De esta manera, el pivot divide el array entre los elementos iguales o menores que este, y los elementos iguales o mayores que este.
+- Implica tomar de un vector el ultimo de sus elementos para tomarlo con "pivot". De esta manera, el pivot divide el array entre los elementos iguales o menores que este, y los elementos mayores que este.
 
     ![QuickSortExample](https://blog.shahadmahmud.com/quicksort/qs3/)
 
@@ -36,7 +36,7 @@
     - "low", como el primer elemento de la lista.
     - "high", como el último elemento de la lista. 
 - Mientras haya un primer elemento diferente a un último elemento (que low sea menor que high) se ejecutará el sorteamiento.
-    ##### Función "quick_sort":
+    ##### :hash:Función "quick_sort":
 ~~~ Python 
     def quick_sort(array, low, high):
     if low < high:
@@ -45,7 +45,7 @@
         quick_sort(array, pi + 1, high)
 ~~~
 - Lo primero que hace esta función es llamar a otra: particionar, la cual recibe los mismos tres parámetros. Ésta es la encargada de realizar, como bien su nombre lo dice, las particiones al array a través de un pivot.
-    ##### Función particionar
+    ##### :hash:Función "particionar":
 - El primer paso será establecer el último elemento del array como el pivote.
 - Luego se creará una nueva variable "i", que será utilizada para realizar el swap. Esta misma toma el valor del primer elemento menos una unidad. 
     - Se denominará swap al intercambio entre dos elementos de un vector.
@@ -60,13 +60,11 @@
     - i, sin entrar en la condicion del for, vale: "-1" (puesto a que el primer elemento se encuentra en posición "0").
     - Los elementos recorridos serán: [5,2,1,7,9].
     - [5] es más grande que el vector, no ingresa. Sin embargo, [2], el siguiente elemento, es más pequeño o igual que el vector. Se procede a hacer el swap.
-    - Se intercambia el primer elemento [5] (porque i+1 = 0) con [2]. Quedará esto: [2,5,1,7,9].
-    - Se encuentra otro número menor o igual que el vector: [1]. La variable "i" se le suma 1 y se realiza el swap de [5] con [1], porque ahora [5] se vuelve a encontrar en la posición "i" (1). Quedará: [2,1,5,7,9]. 
+    - Se intercambia el primer elemento [5] (porque i+1 = 0) con [2]. Quedará esto: [2,5,1,7,9,3].
+    - Se encuentra otro número menor o igual que el vector: [1]. La variable "i" se le suma 1 y se realiza el swap de [5] con [1], porque ahora [5] se vuelve a encontrar en la posición "i" (1). Quedará: [2,1,5,7,9,3]. 
     
-- Así separamos los números menores que el pivot de los mayores
+    - Ahora falta corregir la posición del pivot, que se encuentra en una posición incorrecta. La anteúltima línea intercambia la posición del elemento en posición "i" +  1, que es el elemento más grande que el pivot, siendo el [5], ya que "i" pasa a valer 2. Ahora el pivot queda en el "medio": [2,1,3,7,9,5].
 
-
-    
 ~~~ Python
     def particionar(array, low, high):
     pivote = array[high] #
@@ -81,3 +79,20 @@
     
     return i + 1
 ~~~
+
+- La función "particionar" devuelve la posición del pivot (i+1). A partir de esta posición se llama de manera recursiva a la funcíon quick_sort para los subarrays menores o iguales al pivot y para los que son mayores a este:
+
+~~~ Python
+    quick_sort(array, low, pi - 1)
+~~~
+- En esta llamada se calcula el ordenamiento de los elementos menores o iguales al pivot, puesto a que el elemento máximo del subarray será la posición del pivot - 1.
+- Se utilizamos el ejemplo anterior, la posición máxima será [1].
+
+~~~ Python
+    quick_sort(array, pi + 1, high)
+~~~
+- En esta llamada se calcula el ordenamiento de los elementos mayores, puesto a que la posición mínima del subarray será la posición del pivot + 1. Se excluirá al pivot y se ordenará hasta el último elemento, que será el nuevo pivot.
+- En el ejemplo visto, la posición mínima será el [7], y la máxima el [5], siendo este último el nuevo pivot del subarray.
+
+
+    
