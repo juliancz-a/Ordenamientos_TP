@@ -45,7 +45,7 @@
         quick_sort(array, low, pi - 1)
         quick_sort(array, pi + 1, high)
 ~~~ 
-- Mientras haya un primer elemento diferente a un último elemento (que low sea menor que high) se ejecutará el sorteamiento.
+- Mientras el primer elemento sea menor en cantidad al último elemento (que low sea menor que high) se ejecutará el sorteamiento.
 - Una vez se cumple esta condición, lo primero que hace esta función es llamar a otra: particionar, la cual recibe los mismos tres parámetros. Ésta es la encargada de realizar, como bien su nombre lo dice, las particiones al array a través de un pivot.
 
 ##### :hash:Función "particionar":
