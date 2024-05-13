@@ -56,11 +56,14 @@
         -   Del elemento en posición "i", con el elemento en posición "j" (el elemento recorrido que puede variar desde el primer elemento del vector hasta el anteúltimo).
 
 - Pongamos en un ejemplo esto:
-    - Tenemos la siguiente lista : [5,2,1,7,9,3].
-    - El vector será [3].
+    - Tenemos la siguiente lista : [5,2,1,7,9,3]. El vector será [3].
     - i, sin entrar en la condicion del for, vale: "-1" (puesto a que el primer elemento se encuentra en posición "0").
     - Los elementos recorridos serán: [5,2,1,7,9].
-    - [2] es más pequeño o igual al vector [3], 
+    - [5] es más grande que el vector, no ingresa. Sin embargo, [2], el siguiente elemento, es más pequeño o igual que el vector. Se procede a hacer el swap.
+    - Se intercambia el primer elemento [5] (porque i+1 = 0) con [2]. Quedará esto: [2,5,1,7,9].
+    - Se encuentra otro número menor o igual que el vector: [1]. La variable "i" se le suma 1 y se realiza el swap de [5] con [1], porque ahora [5] se vuelve a encontrar en la posición "i" (1). Quedará: [2,1,5,7,9]. 
+    
+- Así separamos los números menores que el pivot de los mayores
 
 
     
