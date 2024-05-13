@@ -13,12 +13,12 @@
 - [Parte 2. Algoritmo Quick Sort Actvidad.](quicksort2)
 
 
-## 0. Introducción. <a name="introducción"></a>
+## 0. Introducción :page_with_curl: <a name="introducción"></a>
 
 - El siguiente proyecto proporcionará información acerca de los algoritmos de ordenamiento trabajados en clase. Se analizará en profundidad el funcionamiento del "Quick Sort". Por otro lado, se desarrollará el algoritmo visto en el video y se presentarán sus ventajas, desventajas...
 
 
-## 1. Algoritmo QuickSort. :1234:<a name="quicksort"></a>
+## 1. Algoritmo QuickSort :1234:<a name="quicksort"></a>
 
 ### ¿Cómo funciona el algoritmo de ordenamiento Quick Sort?
 
@@ -29,7 +29,7 @@
 
 - Una vez dividido el array en "subarrays", se volverá a repetir este procedimiento: cada "pedacito" de la lista tomará como pivot el último de sus elementos y hará la comparación formando nuevos subarrays, hasta que el vector no tenga más elementos con los cuales compararse. 
 
-#### :scroll: Explicación paso a paso del código.
+#### :scroll: Explicación paso a paso del código
 
 - Luego de definir un vector con elementos sin órden alguno, se llamará a la función quick_sort, la cual recibe tres parametros. Estos son: 
     - "array", siendo la lista en sí.
