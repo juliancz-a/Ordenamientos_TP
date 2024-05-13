@@ -13,12 +13,12 @@
 - [Parte 2. Algoritmo Quick Sort Actvidad.](quicksort2)
 
 
-## Introducción. <a name="introducción"></a>
+## 0. Introducción. <a name="introducción"></a>
 
 - El siguiente proyecto proporcionará información acerca de los algoritmos de ordenamiento trabajados en clase. Se analizará en profundidad el funcionamiento del "Quick Sort". Por otro lado, se desarrollará el algoritmo visto en el video y se presentarán sus ventajas, desventajas...
 
 
-## :1234: Algoritmo QuickSort<a name="quicksort"></a>
+## 1. Algoritmo QuickSort. :1234:<a name="quicksort"></a>
 
 ### ¿Cómo funciona el algoritmo de ordenamiento Quick Sort?
 
@@ -36,7 +36,7 @@
     - "low", como el primer elemento de la lista.
     - "high", como el último elemento de la lista. 
 - Mientras haya un primer elemento diferente a un último elemento (que low sea menor que high) se ejecutará el sorteamiento.
-    ##### Función "quick_sort"
+    ##### Función "quick_sort":
 ~~~ Python 
     def quick_sort(array, low, high):
     if low < high:
@@ -44,5 +44,37 @@
         quick_sort(array, low, pi - 1)
         quick_sort(array, pi + 1, high)
 ~~~
+- Lo primero que hace esta función es llamar a otra: particionar, la cual recibe los mismos tres parámetros. Ésta es la encargada de realizar, como bien su nombre lo dice, las particiones al array a través de un pivot.
+    ##### Función particionar
+- El primer paso será establecer el último elemento del array como el pivote.
+- Luego se creará una nueva variable "i", que será utilizada para realizar el swap. Esta misma toma el valor del primer elemento menos una unidad. 
+    - Se denominará swap al intercambio entre dos elementos de un vector.
+- Lo siguiente que se realizará será un "recorrido" del vector, este será desde el primer elemento hasta el anteúltimo elemento, ya que el búcle "for" itera excluyendo el último valor asigando. Excluye, entonces, el pivot, ya que no necesitamos que se compare a sí mismo.
+- Comparamos si los elementos son iguales o más pequeños que el pivot. Si se da la condición:
+    -   A "i" se le suma 1 unidad.
+    -   Se realizará el swap, a través de la función "swap":
+        -   Del elemento en posición "i", con el elemento en posición "j" (el elemento recorrido que puede variar desde el primer elemento del vector hasta el anteúltimo).
 
-- Lo primero que hace esta función es llamar a otra: particionar, la cual recibe los mismos tres parámetros. Ésta es la encargada de realizar, como bien su nombre lo dice, particionar el array a través de un pivot.
+- Pongamos en un ejemplo esto:
+    - Tenemos la siguiente lista : [5,2,1,7,9,3].
+    - El vector será [3].
+    - i, sin entrar en la condicion del for, vale: "-1" (puesto a que el primer elemento se encuentra en posición "0").
+    - Los elementos recorridos serán: [5,2,1,7,9].
+    - [2] es más pequeño o igual al vector [3], 
+
+
+    
+~~~ Python
+    def particionar(array, low, high):
+    pivote = array[high] #
+    i = low - 1 
+        
+    for j in range(low, high):
+        if array[j] <= pivote: 
+            i += 1 
+            array[i], array[j] = swap(array[i], array[j])
+    
+    array[i + 1], array[high] = swap(array[i + 1], array[high] ) 
+    
+    return i + 1
+~~~
