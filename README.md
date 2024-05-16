@@ -10,7 +10,7 @@
     - ¿Cómo funciona?
     - ¿Como emplear Quick Sort sin recursividad?
     - Diferencias entre Quick Sort con y sin recursividad.
-- [Parte 2. Algoritmo Quick Sort Actvidad.](quicksort2)
+- [Parte 2. Algoritmo Quick Sort Actvidad.](#hungarian_quicksort)
 
 
 ## 0. Introducción :page_with_curl: <a name="introducción"></a>
@@ -123,7 +123,7 @@ def quicksort (array, low, high):
     tope = tope + 1
     pila[tope] = high
     while tope >= 0: #Se desapilan elementos de la pila mientras hayan.
-        #Se sacan los valores del momento de low y high en cada iteracion almacenados en pila (se hace un pop)
+        #Se sacan los valores del momento de low y high (en cada iteracion) de la pila (se hace un pop)
         high = pila[tope]
         tope = tope - 1
         low = pila[tope]
@@ -148,10 +148,16 @@ def quicksort (array, low, high):
 ### Diferencias entre QuickSort recursivo y no recursivo :vs:
 
 
-Colons can be used to align columns.
 
 |         Diferencias      | qSort Recursivo | qSort Iterativo  |
 | ------------- |:-------------:| :----------------:  |
-|               |     Altos consumos de memoria (puede haber desbordamientos de pila)         |        El consumo está controlado (el heap es dinámico)             |
-|               |      Su complejidad es menor. Claridad.                              | Su complejidad es mayor
-|                |      Ambas tienen un rendimiento similar                                | Ambas tienen un rendimiento similiar.
+|               |     Altos consumos de memoria (puede haber desbordamientos de pila).         |        El consumo está controlado (el heap es dinámico).             |
+|               |      Su complejidad es menor. Claridad.                              | Su complejidad es mayor.
+|                |      Ambas tienen un rendimiento similar.                               | Ambas tienen un rendimiento similiar. 
+
+
+- Si bien ambos tienen rendimiento similar, hay que tener en cuenta que este mismo se puede ver afectado en el caso utilizar recursividad por el alto uso de memoria que se puede llegar a tener. Por otro lado, estos algoritmos pueden ser optimizados, porque hay casos donde los elementos del vector estan organizados de tal manera que se dan casos donde es necesario un mayor número de iteraciones/recursiones. Para ello se podria implementar, por ejemplo, que el pivot utilizado para las particiones sea aleatorio, así, en casos de grandes cantidades de elementos se puede llegar a reducir la carga.
+
+
+## 2. Quick Sort (Hungarian folk dance method) <a name="hungarian_quicksort"></a>
+
