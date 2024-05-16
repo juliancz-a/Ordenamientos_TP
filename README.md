@@ -20,7 +20,7 @@
 
 ## 1. Algoritmo QuickSort :1234:<a name="quicksort"></a>
 
-### ¿Cómo funciona el algoritmo de ordenamiento Quick Sort?
+### 1.1. ¿Cómo funciona el algoritmo de ordenamiento Quick Sort? :running:
 
 - Quick Sort es un método que suele ser más rápido que los demás a la hora de ordenar elementos de un vector. 
 - Implica tomar de un vector el ultimo de sus elementos para tomarlo con "pivot". De esta manera, el pivot divide el array entre los elementos iguales o menores que este, y los elementos mayores que este.
@@ -65,9 +65,9 @@
 ~~~
 
 - El primer paso será establecer el último elemento del array como el pivote.
-- Luego se creará una nueva variable "i", que será utilizada para realizar el swap. Esta misma toma el valor del primer elemento menos una unidad. 
-    - Se denominará swap al intercambio entre dos elementos de un vector.
-- Lo siguiente que se realizará será un "recorrido" del vector, este será desde el primer elemento hasta el anteúltimo elemento, ya que el búcle "for" itera excluyendo el último valor asigando. Excluye, entonces, el pivot, ya que no necesitamos que se compare a sí mismo.
+- Luego se creará una nueva variable "i", que será utilizada para realizar el swap. Esta misma toma el valor del primer elemento menos una unidad. Actúa como el índice de un elemento a ser intercambiado por otro más pequeño.
+    - Swap se denomina al intercambio entre dos elementos de un vector.
+- Lo siguiente que se realizará será un "recorrido" del vector, este será desde el primer elemento hasta el anteúltimo elemento, ya que el búcle "for" itera excluyendo el último valor asignado. Excluye, entonces, el pivot, ya que no necesitamos que se compare a sí mismo.
 - Comparamos si los elementos son iguales o más pequeños que el pivot. Si se da la condición:
     -   A "i" se le suma 1 unidad.
     -   Se realizará el swap, a través de la función "swap":
@@ -87,7 +87,7 @@
     - Se intercambia el primer elemento [5] (porque i+1 = 0) con [2]. Quedará esto: [2,5,1,7,9,3].
     - Se encuentra otro número menor o igual que el vector: [1]. La variable "i" se le suma 1 y se realiza el swap de [5] con [1], porque ahora [5] se vuelve a encontrar en la posición "i" (1). Quedará: [2,1,5,7,9,3]. 
     
-- Fuera del for, se corrige la posición del pivot, ya que solo ordenamos los elementos menores que este y los mayores a este. Necesitamos posicionar al pivot donde corresponde para que los subarrays luego tomen otro valor como pivot. La anteúltima línea intercambia la posición del elemento en posición "i" +  1, que es un elemento más grande o igual que el pivot. Siguiendo el ejemplo visto, se intercambia el [5], ya que "i" pasa a valer 2. Ahora el pivot queda en el "medio": [2,1,3,7,9,5]. Así, se da por terminada la primera partición.
+- Fuera del for, se corrige la posición del pivot, ya que solo ordenamos los elementos menores que este y los mayores a este. Necesitamos posicionar al pivot donde corresponde para que los subarrays luego tomen otro valor como pivot. La anteúltima línea intercambia la posición del elemento en posición "i" +  1,(que es un elemento más grande o igual que el pivot), con el pivot. Siguiendo el ejemplo visto, se intercambia el [5], ya que "i" pasa a valer 2. Ahora el pivot queda en el "medio": [2,1,3,7,9,5]. Así, se da por terminada la primera partición.
 
 - La función "particionar" devuelve la posición del pivot (i+1). A partir de esta posición se llama de manera recursiva a la funcíon quick_sort para los subarrays menores o iguales al pivot y para los que son mayores a este.
 
@@ -104,3 +104,54 @@
 ~~~
 - En esta llamada se calcula el ordenamiento de los elementos mayores, puesto a que la posición mínima del subarray será la posición del pivot + 1. Se excluirá al pivot y se ordenará hasta el último elemento, que será el nuevo pivot.
 - En el ejemplo visto, la posición mínima será el [7], y la máxima el [5], siendo este último el nuevo pivot del subarray.
+
+### 1.2. ¿Se puede realizar un algoritmo QuickSort sin utilizar recursividad? :repeat:
+
+- Sí. Es posible desarrollar este algoritmo de sorteo excluyendo el uso de una función recursiva. Para ello podemos realizar una versión **iterativa** de este. Si bien parte del código se mantiene, por ejemplo el procedimiento para particionar y obtener la posición del pivot, debemos buscar otra manera de almacenar las llamadas y retornos de la función (quicksort) que se encargaba de guardar los "subarrays" generados.
+
+<center><img src="./img/stack.png" width=235 height =282></center>
+
+- Entonces, para reemplazar a la pila (stack), donde se almacena memoria que contiene los retornos de la función, podemos crear una pila auxiliar, que sea del tamaño del vector, y que contenga los elementos a ser ordenados. Una vez ordenados, la pila estará vacía, pues no tendra nada más que ordenar:
+##### :hash:Funcionamiento iterativo de QuickSort:
+~~~ Python
+def quicksort (array, low, high):
+    pila = [0] * (len(array))     # Pila auxiliar
+    tope = -1    #Inicializar el tope de pila:
+    #Añadir el primer elemento y el último a la pila:
+    tope = tope + 1
+    pila[tope] = low
+    tope = tope + 1
+    pila[tope] = high
+    while tope >= 0: #Se desapilan elementos de la pila mientras hayan.
+        #Se sacan los valores del momento de low y high en cada iteracion almacenados en pila (se hace un pop)
+        high = pila[tope]
+        tope = tope - 1
+        low = pila[tope]
+        tope = tope - 1
+
+        p = particionar( array, low, high )  # Ordenamiento  / #p = pivot
+        #Apilar para la izquierda de la pila
+        if p-1 > low:
+            tope = tope + 1
+            pila[tope] = low
+            tope = tope + 1
+            pila[tope] = p - 1
+        #Apilar para la derecha de la pila
+        if p+1 < high:
+            tope = tope + 1
+            pila[tope] = p + 1
+            tope = tope + 1
+            pila[tope] = high
+~~~
+- En este código podría decirse que se "emula" el funcionamiento de la pila guardando la información de cada iteración en el montón (o heap) a través de una lista (pila auxiliar) que hace un seguimiento de los "subarrays" generados.
+
+### Diferencias entre QuickSort recursivo y no recursivo :vs:
+
+
+Colons can be used to align columns.
+
+|         Diferencias      | qSort Recursivo | qSort Iterativo  |
+| ------------- |:-------------:| :----------------:  |
+|               |     Altos consumos de memoria (puede haber desbordamientos de pila)         |        El consumo está controlado (el heap es dinámico)             |
+|               |      Su complejidad es menor. Claridad.                              | Su complejidad es mayor
+|                |      Ambas tienen un rendimiento similar                                | Ambas tienen un rendimiento similiar.
