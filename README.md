@@ -2,7 +2,6 @@
  <center><img src="https://assets-global.website-files.com/606a802fcaa89bc357508cad/6123c034286044167618b263_7.png" width="800" height="500"></center>
 
 ## Integrantes :raising_hand:
-- Julián Caceres
 
 ## Índice
 - [Introducción.](#introducción)
