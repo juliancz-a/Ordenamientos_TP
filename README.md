@@ -260,61 +260,61 @@ La función, una vez que se encuentra fuera del bucle principal, retorna el índ
     qsort(array, pivot_index + 1, high) # El elemento menor será [7]
 ~~~
 
-### 4. Análisis comparativo con otros algoritmos de ordenamiento
+### 4. Análisis comparativo con otros algoritmos de ordenamiento :signal_strength:
 
-#### Eficiencia en el caso promedio:
+#### Eficiencia en el caso promedio :eight_spoked_asterisk:
 
-##### QuickSort: 
+##### _QuickSort_: 
 
 -   Tiene una complejidad de tiempo promedio de O(n log n), es decir, grandes conjuntos de datos de manera muy eficiente en comparación con otros algoritmos de ordenamiento. Lo que lo hace mucho más eficiente que Burbujeo y Selección para conjuntos de datos grandes.
 
-##### Burbujeo: 
+##### _Burbujeo_: 
 
 -   Tiene una complejidad de tiempo promedio de O(n^2) o mejor dicho, que tiene una complejidad de tiempo de ejecución que crece de forma cuadrática con respecto al tamaño del conjunto de datos. Lo que lo hace menos eficiente que QuickSort, especialmente para conjuntos de datos grandes.
 
-##### Selección: 
+##### _Selección_: 
 
 -   También tiene una complejidad de tiempo promedio de O(n^2), por lo que es menos eficiente que QuickSort en términos de tiempo de ejecución en conjuntos de datos grandes.
 
-#### Eficiencia en el peor caso:
+#### Eficiencia en el peor caso :eight_pointed_black_star:
 
-##### QuickSort: 
+##### _QuickSort_: 
 
 -   Puede degradarse a O(n^2) en el peor caso si el pivote elegido divide la lista de manera desigual. Sin embargo, esto es poco probable en la práctica si se elige un pivote adecuado.
 
-##### Burbujeo: 
+##### _Burbujeo_: 
 
 -   Siempre tiene una complejidad de tiempo de O(n^2), ya que realiza un número cuadrático de comparaciones e intercambios.
 
-##### Selección: 
+##### _Selección_: 
 
 -   También siempre tiene una complejidad de tiempo de O(n^2), ya que realiza un número cuadrático de comparaciones y movimientos.
 
-#### Estabilidad:
+#### Estabilidad :on:
 
-##### QuickSort:
+##### _QuickSort_:
 
 -   No es estable, lo que significa que no necesariamente preserva el orden relativo de los elementos con valores iguales.
 
-##### Burbujeo: 
+##### _Burbujeo_: 
 
 -   Es estable, ya que solo intercambia elementos adyacentes si son inversos.
 
-##### Selección: 
+##### _Selección_: 
 
 -   No es estable, ya que puede cambiar el orden relativo de los elementos con valores iguales.
 
-#### Uso de memoria:
+#### Uso de memoria :floppy_disk:
 
-##### QuickSort: 
+##### _QuickSort_: 
 
 -   Puede ser implementado in-place, lo que significa que no requiere memoria adicional más allá de la lista que está siendo ordenada. Esto lo hace eficiente en términos de uso de memoria.
 
-##### Burbujeo: 
+##### _Burbujeo_: 
 
 -   Requiere memoria adicional para realizar intercambios entre elementos.
 
-##### Selección: 
+##### _Selección_: 
 
 -   Requiere memoria adicional para realizar intercambios entre elementos.
 
