@@ -9,7 +9,7 @@ def partition(array, low, high):
     izq = low + 1
     der = high
 
-    while izq <= der:
+    while True:
         # Encontrar el primer elemento menor que el pivote desde el final
         while der >= izq and array[der] >= pivot:
             der -= 1
@@ -27,24 +27,29 @@ def partition(array, low, high):
             # Intercambiar el pivote con el elemento mayor encontrado
             array[izq], array[der] = swap(array[izq], array[der])
 
-        print(array)
+        else:
+        # Si los índices se cruzan, romper el bucle
+            break
 
-        return pivot
+    # Intercambiar el pivote con el elemento en la posición de 'right'
+    array[low], array[der] = swap(array[low], array[der])
 
+    print(array)
+    return der
+
+
+        
 def qsort(array, low, high) -> list:
-    global contador
-    contador += 1
+
     if low < high:
         pivot = partition(array, low, high)
         print(pivot)
         qsort(array, low, pivot - 1)
         qsort(array, pivot + 1, high)
 
-array = [3,0,1,8,7,2,5,4,9,6,354,1,2,42]
+array = [3, 0, 1, 8, 7, 2, 5, 4, 9, 6]
 print(f"Array inicial : {array}")
 
 qsort(array, 0, len(array)- 1)
 
 print(array)
-
-print(contador)
