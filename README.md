@@ -162,4 +162,61 @@ def quicksort (array, low, high):
 
 ### Explicación paso a paso del código
 
-- Para realizar un algoritmo que explique la coreografía del video,
+- Para realizar un algoritmo que siga la coreografía del video asignado, nos basamos en la recursión utilizada en el punto 1. Sin embargo, la partición en este caso debe ser distinta, siguiendo los patrones que realiza el pivot en la coreografia de la danza hungara.
+
+#### Comportamiento del pivot:
+
+##### PRIMER PASO
+![paso_1](img/paso1_qsort.png)
+
+- El primer paso que realiza el algoritmo de la función "particionar", es comparar el pivot, que alude al primer elemento del array (en este caso, "3"), con el último elemento. Si el pivot es menor que el último elemento, se realiza un intercambio entre estos. Como esto no sucede, el pivot se comparará con el elemento anterior a este último, yendo desde el final hacia el principio. El "swap" se realizará cuando "3" se compare con "2".
+
+##### SEGUNDO PASO
+
+![paso_2](img/paso2_qsort.png)
+
+- Luego el pivot, desde la posición anterior del "2", se compara con el elemento siguiente del ordenado (o sea, "0"). Se analiza si este elemento es mayor que el pivot, yendo desde atrás hacia adelante. Cuando esto suceda, se intercambian. En este caso, se hace un swap del 8 con el 3.
+
+##### TERCER PASO
+
+![paso_3](img/paso3_qsort.png)
+
+- El tercer paso es una réplica del primero, se aislan los elementos que fueron comparados por el pivot, y éste se compara con el último elemento (a ser comparado), si el pivot es menor que este, se hace el intercambio. Como esto no sucede, mantienen sus posiciones, y se da por terminado la primera partición, con dos subarrays resultantes.
+
+![resultado](img/resultado.png)
+
+
+#### Explicación del comportamiento del pivot en el código
+
+##### :hash: Inicialización de variables
+
+
+~~~Python
+def partition(array, low, high):
+    pivot = array[low]  # El pivote es el primer elemento
+    izq = low + 1
+    der = high
+~~~
+
+    while izq <= der:
+        # Encontrar el primer elemento menor que el pivote desde el final
+        while der >= izq and array[der] >= pivot:
+            der -= 1
+        
+        if der >= izq:
+            # Intercambiar el pivote con el elemento menor encontrado
+            array[low], array[der] = swap(array[low], array[der])
+            pivot = array[der]
+        
+        # Encontrar el primer elemento mayor que el pivote desde el inicio
+        while izq <= der and array[izq] <= pivot:
+            izq += 1
+
+        if izq <= der:
+            # Intercambiar el pivote con el elemento mayor encontrado
+            array[izq], array[der] = swap(array[izq], array[der])
+
+        print(array)
+
+        return pivot
+~~~

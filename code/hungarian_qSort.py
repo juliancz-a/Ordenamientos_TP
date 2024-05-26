@@ -5,26 +5,26 @@ def swap(a: int, b: int):
 
 def partition(array, low, high):
     pivot = array[low]  # El pivote es el primer elemento
-    left = low + 1
-    right = high
+    izq = low + 1
+    der = high
 
-    while left <= right:
+    while izq <= der:
         # Encontrar el primer elemento menor que el pivote desde el final
-        while right >= left and array[right] >= pivot:
-            right -= 1
+        while der >= izq and array[der] >= pivot:
+            der -= 1
         
-        if right >= left:
+        if der >= izq:
             # Intercambiar el pivote con el elemento menor encontrado
-            array[low], array[right] = swap(array[low], array[right])
-            pivot = array[right]
+            array[low], array[der] = swap(array[low], array[der])
+            pivot = array[der]
         
         # Encontrar el primer elemento mayor que el pivote desde el inicio
-        while left <= right and array[left] <= pivot:
-            left += 1
+        while izq <= der and array[izq] <= pivot:
+            izq += 1
 
-        if left <= right:
+        if izq <= der:
             # Intercambiar el pivote con el elemento mayor encontrado
-            array[left], array[right] = swap(array[left], array[right])
+            array[izq], array[der] = swap(array[izq], array[der])
 
         print(array)
 
