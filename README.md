@@ -189,54 +189,60 @@ def quicksort (array, low, high):
 #### Explicación del comportamiento del pivot en el código
 
 ##### :hash: Inicialización de variables
-
+[ array = [3, 0, 1, 8, 7, 2, 5, 4, 9, 6] ]
 - El primer paso es inicializar las variables necesarias para realizar las comparaciones y ordenar:
 
 ~~~Python
 def partition(array, low, high):
-    pivot = array[low] # El pivot es el primer elemento del array
+    pivot_index = low  # El primer indice será el indice del pivot
+    pivot = array[pivot_index] # El primer elemento será el pivot
     izq = low + 1 # Izquierda: Elemento siguiente al pivot (Comparado con pivot luego de primer intercambio)
     der = high # Derecha: último elemento del array (donde se comienza a comparar)
 ~~~
 
-- Luego inicializamos el while principal, que se ejecutará siempre y cuando izquierda sea menor o igual a derecha. Más adelante, se explicará cuando esta condición no se cumpla.
-
-~~~ Python
-    while izq <= der:
-~~~
+- Luego inicializamos el while principal, que será un bucle infinito (while True), el cual se romperá en el caso de que se cumplan ciertas condiciones.
 
 ##### :hash: Primer paso de comparación
 
-- 
-
+- El primer sector del algoritmo de partición, realiza la misma función que observamos en el primer paso del vídeo: 
+    - Comienza a buscar un elemento menor al pivot (desde la derecha, es decir, desde el final), y, mientras no lo encuentre "der" se disminuye en 1. 
+    - En el caso de que "der" sea menor a "izq", el bucle principal se rompe.
+    - Si esta condición no se da, se procede a hacer el intercambio entre el índice con el elemento pivot(3), y el primer elemento menor a este (2). Por último, el indice con el elemento pivot toma el valor del índice del elemento intercambiado (2).
 
 ~~~ Python
-        # Encontrar el primer elemento menor que el pivote desde el final
+        # Buscar desde el final hacia el inicio hasta encontrar un elemento menor que el pivot
         while der >= izq and array[der] >= pivot:
             der -= 1
-        
-        if der >= izq:
-            # Intercambiar el pivote con el elemento menor encontrado
-            array[low], array[der] = swap(array[low], array[der])
-            pivot = array[der]
+
+        if der < izq:
+            break
+
+        # Intercambiar el pivot con el elemento menor encontrado
+        swap(array, pivot_index, der)
+        pivot_index = der # 
 ~~~
 
+- El segundo sector del algoritmo de partición, realiza el segundo paso de la coreografía:
+    - Empieza comparando al elemento que se encuentra en la posición siguiente a la INICIAL del pivot, (en este caso, sería el 0), con el pivot en su posición actual. Mientras no se encuentre un elemento sobre la izquierda que sea mayor a pivot, "izq" aumentará en 1, es decir, irá buscando desde el principio hasta el final, hasta encontrar el número deseado (8, en este caso).
+    - En el caso de que "izq" sea mayor a "der", el bucle principal se rompe.
+    - Si esta condicion no se da, se hace el intercambio entre los elementos, y el indice del elemento pivot toma el valor del indice del elemento intercambiado (8).
 
-
-        # Encontrar el primer elemento mayor que el pivote desde el inicio
+~~~ Python
+        # Buscar desde el inicio hacia el final hasta encontrar un elemento mayor que el pivote
         while izq <= der and array[izq] <= pivot:
             izq += 1
 
-        if izq <= der:
-            # Intercambiar el pivote con el elemento mayor encontrado
-            array[izq], array[der] = swap(array[izq], array[der])
+        if izq > der:
+            break
 
-        print(array)
-
-        return pivot
+        # Intercambiar el pivote con el elemento mayor encontrado
+        swap(array, pivot_index, izq)
+        pivot_index = izq
 ~~~
 
+-  El codigo volverá a analizar desde el principio, retomando el primer paso, si el elemento de posicion "der" (recordemos que esta variable fue disminuyendose) es menor que el pivot. Como no lo encuentra, porque compara al pivot [3] con [8] y [7],  llegara un punto donde "der" valga "2", esto hace que "izq" sea mayor, por lo que se rompe este bucle. Luego se vuelve a hacer la comparacion de izq con der, y como este último ahora es menor, el bucle principal se rompe: ya no hubo mas intercambios por hacer.
 
+Array luego de la primera partición : [2,0,1,3,7,8,5,4,9,6]
 
 
 
