@@ -223,6 +223,8 @@ def partition(array, low, high):
         pivot_index = der # 
 ~~~
 
+##### :hash: Segundo paso de comparación
+
 - El segundo sector del algoritmo de partición, realiza el segundo paso de la coreografía:
     - Empieza comparando al elemento que se encuentra en la posición siguiente a la INICIAL del pivot, (en este caso, sería el 0), con el pivot en su posición actual. Mientras no se encuentre un elemento sobre la izquierda que sea mayor a pivot, "izq" aumentará en 1, es decir, irá buscando desde el principio hasta el final, hasta encontrar el número deseado (8, en este caso).
     - En el caso de que "izq" sea mayor a "der", el bucle principal se rompe.
@@ -241,15 +243,23 @@ def partition(array, low, high):
         pivot_index = izq
 ~~~
 
+##### :hash: Reiteración del proceso anterior
 -  El codigo volverá a analizar desde el principio, retomando el primer paso, si el elemento de posicion "der" (recordemos que esta variable fue disminuyendose) es menor que el pivot. Como no lo encuentra, porque compara al pivot [3] con [8] y [7],  llegara un punto donde "der" valga "2", esto hace que "izq" sea mayor, por lo que se rompe este bucle. Luego se vuelve a hacer la comparacion de izq con der, y como este último ahora es menor, el bucle principal se rompe: ya no hubo mas intercambios por hacer.
 
 Array luego de la primera partición : [2,0,1,3,7,8,5,4,9,6]
 
 
+- La función, una vez que se encuentra fuera del bucle principal, retorna el índice del pivot. A través de este, se realizaran las recursiones que analizamos en el punto 1 del trabajo práctico:
+    - Se ordenan, por un lado, los elementos anteriores al pivot:
+    ~~~Python
+        qsort(array, low, pivot_index - 1) # El mayor elemento será [1]
+    ~~~
+    - Se ordenan, por otro lado, los elementos posteriores al pivot:
+    ~~~Python
+        qsort(array, pivot_index + 1, high) # El elemento menor será [7]
+    ~~~
 
-
-
-
+### Análisis comparativo con otros algoritmos de ordenamiento
 
 
 
