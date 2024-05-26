@@ -1,5 +1,6 @@
 # Hungarian folk dance  (QuickSort)
 
+contador = 0
 def swap(a: int, b: int):
     return b,a
 
@@ -31,16 +32,19 @@ def partition(array, low, high):
         return pivot
 
 def qsort(array, low, high) -> list:
-
+    global contador
+    contador += 1
     if low < high:
         pivot = partition(array, low, high)
         print(pivot)
         qsort(array, low, pivot - 1)
         qsort(array, pivot + 1, high)
 
-array = [3,0,1,8,7,2,5,4,9,6]
+array = [3,0,1,8,7,2,5,4,9,6,354,1,2,42]
 print(f"Array inicial : {array}")
 
 qsort(array, 0, len(array)- 1)
 
 print(array)
+
+print(contador)

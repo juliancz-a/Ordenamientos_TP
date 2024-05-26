@@ -190,15 +190,27 @@ def quicksort (array, low, high):
 
 ##### :hash: Inicialización de variables
 
+- El primer paso es inicializar las variables necesarias para realizar las comparaciones y ordenar:
 
 ~~~Python
 def partition(array, low, high):
-    pivot = array[low]  # El pivote es el primer elemento
-    izq = low + 1
-    der = high
+    pivot = array[low] # El pivot es el primer elemento del array
+    izq = low + 1 # Izquierda: Elemento siguiente al pivot (Comparado con pivot luego de primer intercambio)
+    der = high # Derecha: último elemento del array (donde se comienza a comparar)
 ~~~
 
+- Luego inicializamos el while principal, que se ejecutará siempre y cuando izquierda sea menor o igual a derecha. Más adelante, se explicará cuando esta condición no se cumpla.
+
+~~~ Python
     while izq <= der:
+~~~
+
+##### :hash: Primer paso de comparación
+
+- 
+
+
+~~~ Python
         # Encontrar el primer elemento menor que el pivote desde el final
         while der >= izq and array[der] >= pivot:
             der -= 1
@@ -207,7 +219,10 @@ def partition(array, low, high):
             # Intercambiar el pivote con el elemento menor encontrado
             array[low], array[der] = swap(array[low], array[der])
             pivot = array[der]
-        
+~~~
+
+
+
         # Encontrar el primer elemento mayor que el pivote desde el inicio
         while izq <= der and array[izq] <= pivot:
             izq += 1
@@ -220,3 +235,33 @@ def partition(array, low, high):
 
         return pivot
 ~~~
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Ventajas:
+    Eficiencia en el caso promedio: es conocido por su eficiencia en el caso promedio. Tiene una complejidad de tiempo promedio de O(n log n), es decir, que puede ordenar grandes conjuntos de datos de manera muy eficiente en comparación con otros algoritmos de ordenamiento.
+    Baja sobrecarga adicional: tiende a tener una menor sobrecarga adicional debido a una menor cantidad de operaciones adicionales necesarias.
+    In-place y uso eficiente de la memoria: puede ser implementado para ordenar la lista en su lugar, lo que significa que no requiere memoria adicional más allá de la lista que está siendo ordenada. Esto lo hace eficiente en términos de uso de memoria.
+    Buen rendimiento en conjuntos de datos pequeños y medianos: es generalmente más rápido que otros algoritmos de ordenamiento en conjuntos de datos pequeños y medianos debido a su menor sobrecarga y menor complejidad constante.
+## Desventajas:
+    Complejidad en el peor caso: Aunque tiene una complejidad de tiempo promedio de O(n log n), en el peor caso puede degradarse a O(n^2), es decir, el tiempo de ejecución del algoritmo crece de forma cuadrática con respecto al tamaño del conjunto de datos. El pivote elegido dividiría la lista de manera desigual, lo que puede ocurrir si la lista ya está parcialmente ordenada o si el pivote elegido no es óptimo.
+    No es estable: no preserva el orden relativo de los elementos con valores iguales. Esto significa que si hay elementos con el mismo valor en la lista de entrada, su orden relativo puede cambiar en la lista ordenada.
+    En Conclusión, QuickSort es un algoritmo de ordenamiento eficiente en la mayoría de los casos, pero se debe tener cuidado con su implementación para evitar el peor caso de complejidad temporal y problemas similares.
