@@ -183,6 +183,7 @@ def quicksort (array, low, high):
 
 - El tercer paso es una réplica del primero, se aislan los elementos que fueron comparados por el pivot, y éste se compara con el último elemento (a ser comparado), si el pivot es menor que este, se hace el intercambio. Como esto no sucede, mantienen sus posiciones, y se da por terminado la primera partición, con dos subarrays resultantes.
 
+##### RESULTADO PRIMER PARTICIÓN
 ![resultado](img/resultado.png)
 
 
