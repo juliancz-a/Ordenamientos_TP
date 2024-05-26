@@ -160,3 +160,6 @@ def quicksort (array, low, high):
 
 ## 2. Quick Sort (Hungarian folk dance method) <a name="hungarian_quicksort"></a>
 
+### Explicación paso a paso del código
+
+- Para realizar un algoritmo que explique la coreografía del video,

@@ -1,39 +1,46 @@
 # Hungarian folk dance  (QuickSort)
 
-
-array = [3,0,1,8,7,2,5,4,9,6]
-
 def swap(a: int, b: int):
     return b,a
 
 def partition(array, low, high):
-    pivot = array[low] #pivot es el primer elemento de la lista
-    i = low + 1
-    
-    for j in range (high, low, -1): #Desde el último elemento, hasta el anteúltimo (desde mayor a menor)
-        flag_swap = False
-        if array[j] <= pivot:
-            i -= 1
-            print(array[j])
-            print(array[i])
-            array[j], array[i] = swap(array[j], array[i])
-            flag_swap = True
-            if flag_swap:
-                pivot = array[low + 1]
-            print(array)
-    
-    array[i - 1], array[low] = swap(array[i - 1], array[low])
+    pivot = array[low]  # El pivote es el primer elemento
+    left = low + 1
+    right = high
 
-    return i - 1
+    while left <= right:
+        # Encontrar el primer elemento menor que el pivote desde el final
+        while right >= left and array[right] >= pivot:
+            right -= 1
+        
+        if right >= left:
+            # Intercambiar el pivote con el elemento menor encontrado
+            array[low], array[right] = swap(array[low], array[right])
+            pivot = array[right]
+        
+        # Encontrar el primer elemento mayor que el pivote desde el inicio
+        while left <= right and array[left] <= pivot:
+            left += 1
+
+        if left <= right:
+            # Intercambiar el pivote con el elemento mayor encontrado
+            array[left], array[right] = swap(array[left], array[right])
+
+        print(array)
+
+        return pivot
 
 def qsort(array, low, high) -> list:
 
     if low < high:
-        p = partition(array, low, high)
-        qsort(array, low, p - 1)
-        qsort(array, p + 1, high)
+        pivot = partition(array, low, high)
+        print(pivot)
+        qsort(array, low, pivot - 1)
+        qsort(array, pivot + 1, high)
 
+array = [3,0,1,8,7,2,5,4,9,6]
+print(f"Array inicial : {array}")
 
-qsort(array, 0, len(array) - 1)
+qsort(array, 0, len(array)- 1)
 
 print(array)
