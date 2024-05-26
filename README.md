@@ -249,7 +249,7 @@ def partition(array, low, high):
 Array luego de la primera partición : [2,0,1,3,7,8,5,4,9,6]
 
 
--La función, una vez que se encuentra fuera del bucle principal, retorna el índice del pivot. A través de este, se realizaran las recursiones que analizamos en el punto 1 del trabajo práctico:
+La función, una vez que se encuentra fuera del bucle principal, retorna el índice del pivot. A través de este, se realizaran las recursiones que analizamos en el punto 1 del trabajo práctico:
 
 - Se ordenan, por un lado, los elementos anteriores al pivot:
 ~~~Python
