@@ -226,7 +226,7 @@ def partition(array, low, high):
 
         # Intercambiar el pivot con el elemento menor encontrado
         swap(array, pivot_index, der)
-        pivot_index = der # 
+        pivot_index = der
 ~~~
 
 ##### :hash: Segundo paso de comparación
@@ -349,30 +349,3 @@ En resumen, QuickSort es generalmente más eficiente que BubbleSort y SelectiveS
 - Por otro lado, encontramos que cada algoritmo tiene distintos grados de complejidad en cuanto a desarrollo y lectura del mismo. En general, el uso de recursividad en QuickSort facilita la lectura e implementación, a pesar de que por detrás se estén ejecutando instrucciones bastante complejas fuera de nuestro entendimiento. Respecto al algoritmo de la coreografía, en nuestro caso, el proceso que realiza la partición del array se hace más facil de entender y leer que el original asignado.
 
 # ¡Gracias por leer!
-
-
-
-
-
-
-
-<<<<<<< HEAD
-=======
-### 5.
-## Ventajas:
-    Eficiencia en el caso promedio: es conocido por su eficiencia en el caso promedio. Tiene una complejidad de tiempo promedio de O(n log n), es decir, que puede ordenar grandes conjuntos de datos de manera muy eficiente en comparación con otros algoritmos de ordenamiento.
-    Baja sobrecarga adicional: tiende a tener una menor sobrecarga adicional debido a una menor cantidad de operaciones adicionales necesarias.
-    In-place y uso eficiente de la memoria: puede ser implementado para ordenar la lista en su lugar, lo que significa que no requiere memoria adicional más allá de la lista que está siendo ordenada. Esto lo hace eficiente en términos de uso de memoria.
-    Buen rendimiento en conjuntos de datos pequeños y medianos: es generalmente más rápido que otros algoritmos de ordenamiento en conjuntos de datos pequeños y medianos debido a su menor sobrecarga y menor complejidad constante.
-## Desventajas:
-    Complejidad en el peor caso: Aunque tiene una complejidad de tiempo promedio de O(n log n), en el peor caso puede degradarse a O(n^2), es decir, el tiempo de ejecución del algoritmo crece de forma cuadrática con respecto al tamaño del conjunto de datos. El pivote elegido dividiría la lista de manera desigual, lo que puede ocurrir si la lista ya está parcialmente ordenada o si el pivote elegido no es óptimo.
-    No es estable: no preserva el orden relativo de los elementos con valores iguales. Esto significa que si hay elementos con el mismo valor en la lista de entrada, su orden relativo puede cambiar en la lista ordenada.
-    En Conclusión, QuickSort es un algoritmo de ordenamiento eficiente en la mayoría de los casos, pero se debe tener cuidado con su implementación para evitar el peor caso de complejidad temporal y problemas similares.
-
-###6.
-##Conclusiones y reflexiones
-
-    Si es posible, suele convenir utilizar QuickSort para ordenar arrays ya que ,cuando esta bien  implementado, no solo es el mas eficiente en  
-    terminos de velocidad, si no que tambien es el que menos memoria utiliza. Pero si la cadena en si no es necesariamente largo, puede resultar mas
-    conveniente usar otro metodo de ordenamiento mas simple de implementar.
->>>>>>> fa9017d955d6d4365b893241e045ecb137606d02
