@@ -3,6 +3,11 @@
 
 ## Integrantes :raising_hand:
 
+-   Julián Alejandro Caceres
+-   Justin Prado
+-   Gabriel Alvarez Taibo
+-   Franco Gatti
+
 ## Índice
 - [Introducción.](#introducción)
 - [Parte 1. Algoritmo Quick Sort.](#quicksort)
@@ -10,12 +15,15 @@
     - ¿Como emplear Quick Sort sin recursividad?
     - Diferencias entre Quick Sort con y sin recursividad.
 - [Parte 2. Algoritmo Quick Sort Actvidad.](#hungarian_quicksort)
+    - Comportamiento del pivot en la coreografía.
+    - Comportamiento del pivot formalizado en un algoritmo de Python.
+- [Parte 3. Análisis comparativo](#analisis)
+- [Conclusión](#conclusion)
 
 
 ## 0. Introducción :page_with_curl: <a name="introducción"></a>
 
-- El siguiente proyecto proporcionará información acerca de los algoritmos de ordenamiento trabajados en clase. Se analizará en profundidad el funcionamiento del "Quick Sort". Por otro lado, se desarrollará el algoritmo visto en el video y se presentarán sus ventajas, desventajas...
-
+- El siguiente proyecto proporcionará información acerca de los algoritmos de ordenamiento trabajados en clase. Se analizará en profundidad el funcionamiento del "Quick Sort". Por otro lado, se desarrollará el algoritmo asignado en el video y se presentará un análisis acerca del mismo. Finalmente, se hará una conclusión redondeando todo lo visto.
 
 ## 1. Algoritmo QuickSort :1234:<a name="quicksort"></a>
 
@@ -160,11 +168,9 @@ def quicksort (array, low, high):
 
 ## 2. Quick Sort (Hungarian folk dance method) <a name="hungarian_quicksort"></a>
 
-### Explicación paso a paso del código
+- Para realizar un algoritmo que siga la coreografía del video asignado, nos basamos en la recursión utilizada en el punto 1. Sin embargo, la partición en este caso debe ser distinta, siguiendo los patrones que realiza el pivot en la coreografia de la danza húngara.
 
-- Para realizar un algoritmo que siga la coreografía del video asignado, nos basamos en la recursión utilizada en el punto 1. Sin embargo, la partición en este caso debe ser distinta, siguiendo los patrones que realiza el pivot en la coreografia de la danza hungara.
-
-#### Comportamiento del pivot:
+### Comportamiento del pivot en la coreografía<a name="quicksort_pivot"></a>
 
 ##### PRIMER PASO
 ![paso_1](img/paso1_qsort.png)
@@ -187,7 +193,7 @@ def quicksort (array, low, high):
 ![resultado](img/resultado.png)
 
 
-#### Explicación del comportamiento del pivot en el código
+### Implementación del comportamiento del pivot en un código de Python <a name="quicksort_algorithm"></a>
 
 ##### :hash: Inicialización de variables
 [ array = [3, 0, 1, 8, 7, 2, 5, 4, 9, 6] ]
@@ -253,81 +259,100 @@ La función, una vez que se encuentra fuera del bucle principal, retorna el índ
 
 - Se ordenan, por un lado, los elementos anteriores al pivot:
 ~~~Python
-    qsort(array, low, pivot_index - 1) # El mayor elemento será [1]
+    qsort(array, low, pivot_index - 1) # El mayor elemento será [1] y el pivot [2]
 ~~~
 - Se ordenan, por otro lado, los elementos posteriores al pivot:
 ~~~Python
-    qsort(array, pivot_index + 1, high) # El elemento menor será [7]
+    qsort(array, pivot_index + 1, high) # El elemento menor y el pivot será [7] 
 ~~~
 
-### 4. Análisis comparativo con otros algoritmos de ordenamiento :signal_strength:
+## 3. Análisis comparativo con otros algoritmos de ordenamiento :signal_strength: <a name="analisis"></a>
 
-#### Eficiencia en el caso promedio :eight_spoked_asterisk:
+Antes de comenzar con el análisis, es importante considerar el concepto de "complejidad temporal de un algoritmo". Este es, el número de operaciones que realiza un algoritmo para completar su tarea (considerando que cada operación dura el mismo tiempo). El algoritmo que realiza la tarea en el menor número de operaciones se considera el más eficiente en términos de complejidad temporal.
+
+Para entenderlo hay varios elementos que intervienen. En principio: Orden de la operación de ordenamiento, representado con "O", y la cantidad de elementos que intervienen, representado con "n".
+
+![Complejidad de Algoritmos](img/complejidad_algoritmos.png)
+
+###### Comparación de tiempo y repeticiones utilizando un mismo array (medido en ms):
+- BubbleSort:
+![bubblesort_time](img/bubblesort_time.png)
+
+
+- Quick Sort (Coreografía):
+![qsort_time](img/qsort_time.png)
+
+Casos como el del BubbleSort o SelectionSort, cada elemento es comparado con el resto de la colección para determinar el máximo valor. Pensemos en un bucle dentro de otro bucle. Entonces, si tenemos 4 elementos, el máximo de comparaciones a hacer será de 16 (4^2). Otros casos, tales como el de QuickSort, utilizan una complejidad expresada así: O(nlogn) (complejidad loglineal). O (nlogn) implica que las operaciones de registro ocurrirán n veces. El tiempo O(nlogn) es común en algoritmos recursivos o algoritmos de clasificación de árboles binarios.
+
+### 3.1. Eficiencia en el caso promedio :eight_spoked_asterisk:
 
 ##### _QuickSort_: 
 
 -   Tiene una complejidad de tiempo promedio de O(n log n), es decir, grandes conjuntos de datos de manera muy eficiente en comparación con otros algoritmos de ordenamiento. Lo que lo hace mucho más eficiente que Burbujeo y Selección para conjuntos de datos grandes.
 
-##### _Burbujeo_: 
+##### _BubbleSort_: 
 
 -   Tiene una complejidad de tiempo promedio de O(n^2) o mejor dicho, que tiene una complejidad de tiempo de ejecución que crece de forma cuadrática con respecto al tamaño del conjunto de datos. Lo que lo hace menos eficiente que QuickSort, especialmente para conjuntos de datos grandes.
 
-##### _Selección_: 
+##### _SelectionSort_: 
 
 -   También tiene una complejidad de tiempo promedio de O(n^2), por lo que es menos eficiente que QuickSort en términos de tiempo de ejecución en conjuntos de datos grandes.
 
-#### Eficiencia en el peor caso :eight_pointed_black_star:
+### 3.2. Eficiencia en el peor caso :eight_pointed_black_star:
 
 ##### _QuickSort_: 
 
 -   Puede degradarse a O(n^2) en el peor caso si el pivote elegido divide la lista de manera desigual. Sin embargo, esto es poco probable en la práctica si se elige un pivote adecuado.
 
-##### _Burbujeo_: 
+##### _BubbleSort_: 
 
 -   Siempre tiene una complejidad de tiempo de O(n^2), ya que realiza un número cuadrático de comparaciones e intercambios.
 
-##### _Selección_: 
+##### _SelectionSort_: 
 
 -   También siempre tiene una complejidad de tiempo de O(n^2), ya que realiza un número cuadrático de comparaciones y movimientos.
 
-#### Estabilidad :on:
+### 3.3. Estabilidad :on:
 
 ##### _QuickSort_:
 
 -   No es estable, lo que significa que no necesariamente preserva el orden relativo de los elementos con valores iguales.
 
-##### _Burbujeo_: 
+##### _BubbleSort_: 
 
 -   Es estable, ya que solo intercambia elementos adyacentes si son inversos.
 
-##### _Selección_: 
+##### _SelectionSort_: 
 
 -   No es estable, ya que puede cambiar el orden relativo de los elementos con valores iguales.
 
-#### Uso de memoria :floppy_disk:
+### 3.4. Uso de memoria :floppy_disk:
 
 ##### _QuickSort_: 
 
--   Puede ser implementado in-place, lo que significa que no requiere memoria adicional más allá de la lista que está siendo ordenada. Esto lo hace eficiente en términos de uso de memoria.
+-   Quick Sort es un algoritmo recursivo, por lo que tiene un uso de memoria adicional, el cual se debe a la pila de llamadas recursivas. El peor caso de uso de memoria se puede mitigar utilizando un pivot aleatorio, cosa que en nuestro algoritmo no ocurre, por lo que, en una situación de tener un array grande, donde las divisiones que hace el pivot sean poco eficientes, el consumo de memoria será alto.
 
-##### _Burbujeo_: 
+##### _BubbleSort_: 
 
--   Requiere memoria adicional para realizar intercambios entre elementos.
+-   BubbleSort es un algoritmo in-place, lo que significa que no requiere espacio adicional significativo más allá del array de entrada. Utiliza una cantidad constante de memoria adicional para las variables temporales usadas en el intercambio de elementos.
 
-##### _Selección_: 
+##### _SelectionSort_: 
 
--   Requiere memoria adicional para realizar intercambios entre elementos.
+-   Selection Sort, al igual que Selection Sort, es un algoritmo in-place.
 
--    En resumen, QuickSort es generalmente más eficiente que Burbujeo y Selección en términos de tiempo de ejecución y es especialmente eficiente para conjuntos de datos grandes. Sin embargo, los algoritmos de Burbujeo y Selección son más simples de implementar y pueden ser útiles para conjuntos de datos pequeños o en situaciones donde la eficiencia no es crítica.
+En resumen, QuickSort es generalmente más eficiente que BubbleSort y SelectiveSort en términos de tiempo de ejecución y es especialmente eficiente para conjuntos de datos grandes. Sin embargo, los algoritmos Burbujeo y Selección son más simples de implementar y pueden ser útiles para conjuntos de datos pequeños o en situaciones donde la eficiencia no es crítica. Si consideramos a la memoria como  una limitación crítica, estos dos últimos son superiores en comparación a QuickSort, debido a su uso constante de memoria adicional.
 
 
-### 5.
-## Ventajas:
-    Eficiencia en el caso promedio: es conocido por su eficiencia en el caso promedio. Tiene una complejidad de tiempo promedio de O(n log n), es decir, que puede ordenar grandes conjuntos de datos de manera muy eficiente en comparación con otros algoritmos de ordenamiento.
-    Baja sobrecarga adicional: tiende a tener una menor sobrecarga adicional debido a una menor cantidad de operaciones adicionales necesarias.
-    In-place y uso eficiente de la memoria: puede ser implementado para ordenar la lista en su lugar, lo que significa que no requiere memoria adicional más allá de la lista que está siendo ordenada. Esto lo hace eficiente en términos de uso de memoria.
-    Buen rendimiento en conjuntos de datos pequeños y medianos: es generalmente más rápido que otros algoritmos de ordenamiento en conjuntos de datos pequeños y medianos debido a su menor sobrecarga y menor complejidad constante.
-## Desventajas:
-    Complejidad en el peor caso: Aunque tiene una complejidad de tiempo promedio de O(n log n), en el peor caso puede degradarse a O(n^2), es decir, el tiempo de ejecución del algoritmo crece de forma cuadrática con respecto al tamaño del conjunto de datos. El pivote elegido dividiría la lista de manera desigual, lo que puede ocurrir si la lista ya está parcialmente ordenada o si el pivote elegido no es óptimo.
-    No es estable: no preserva el orden relativo de los elementos con valores iguales. Esto significa que si hay elementos con el mismo valor en la lista de entrada, su orden relativo puede cambiar en la lista ordenada.
-    En Conclusión, QuickSort es un algoritmo de ordenamiento eficiente en la mayoría de los casos, pero se debe tener cuidado con su implementación para evitar el peor caso de complejidad temporal y problemas similares.
+## Conclusión y reflexiones :bulb:  <a name="conclusion"></a>
+
+- El trabajo realizado nos permitió identificar que, detrás de unas pocas líneas de código, se ejecutan una serie compleja de operaciones mátematicas que permiten resolver dilemas de todo tipo. Se podría decir que no existe un algoritmo "perfecto", al menos no en los analizados, ya que la eficiencia de estos, ya sea en tiempo de ejecución o administración de la memoria, depende de muchas variables. La longitud de elementos a analizar, el orden inicial de estos, el rango numérico que tienen o la memoria adicional dispuesta a utilizar son algunas de ellas.
+- Por otro lado, encontramos que cada algoritmo tiene distintos grados de complejidad en cuanto a desarrollo y lectura del mismo. En general, el uso de recursividad en QuickSort facilita la lectura e implementación, a pesar de que por detrás se estén ejecutando instrucciones bastante complejas fuera de nuestro entendimiento. Respecto al algoritmo de la coreografía, en nuestro caso, el proceso que realiza la partición del array se hace más facil de entender y leer que el original asignado.
+
+# ¡Gracias por leer!
+
+
+
+
+
+
+
