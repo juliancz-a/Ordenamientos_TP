@@ -331,3 +331,10 @@ La función, una vez que se encuentra fuera del bucle principal, retorna el índ
     Complejidad en el peor caso: Aunque tiene una complejidad de tiempo promedio de O(n log n), en el peor caso puede degradarse a O(n^2), es decir, el tiempo de ejecución del algoritmo crece de forma cuadrática con respecto al tamaño del conjunto de datos. El pivote elegido dividiría la lista de manera desigual, lo que puede ocurrir si la lista ya está parcialmente ordenada o si el pivote elegido no es óptimo.
     No es estable: no preserva el orden relativo de los elementos con valores iguales. Esto significa que si hay elementos con el mismo valor en la lista de entrada, su orden relativo puede cambiar en la lista ordenada.
     En Conclusión, QuickSort es un algoritmo de ordenamiento eficiente en la mayoría de los casos, pero se debe tener cuidado con su implementación para evitar el peor caso de complejidad temporal y problemas similares.
+
+###6.
+##Conclusiones y reflexiones
+
+    Si es posible, suele convenir utilizar QuickSort para ordenar arrays ya que ,cuando esta bien  implementado, no solo es el mas eficiente en  
+    terminos de velocidad, si no que tambien es el que menos memoria utiliza. Pero si la cadena en si no es necesariamente largo, puede resultar mas
+    conveniente usar otro metodo de ordenamiento mas simple de implementar.
